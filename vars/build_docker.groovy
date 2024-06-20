@@ -12,7 +12,8 @@ def dockerLogin(String credentialsId) {
     }
 }
 
-def buildAndPushImage(String directory, String imageName, String buildNumber, String tag = 'latest') {
+def buildAndPushImage(String directory, String imageName, String tag) {
+    def buildNumber = env.BUILD_NUMBER
     println "Executing buildAndPushImage in directory: ${directory}, imageName: ${imageName}, buildNumber: ${buildNumber}, tag: ${tag}"
     dir(directory) {
         def image = docker.build("${imageName}:${buildNumber}")
